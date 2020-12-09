@@ -1,4 +1,6 @@
-type Vector = [...components: Array<number>];
+export type Vector = number[];
+export type Vector2D = [number, number];
+export type Vector3D = [number, number, number];
 
 export function equals(...vectors: Array<Vector>): boolean {
     if (vectors.length === 0) {
@@ -22,9 +24,9 @@ export function equals(...vectors: Array<Vector>): boolean {
     }, true);
 }
 
-export function sum(...vectors: Array<Vector>): Vector {
+export function add(...vectors: Array<Vector>): Vector {
     if (vectors.length === 0) {
-        throw new Error('Can\'t sum 0 vectors.');
+        throw new Error('Can\'t add 0 vectors.');
     }
 
     return vectors.reduce((totalVector, currentVector) => {
@@ -58,4 +60,22 @@ export function dotProduct(vectorA: Vector, vectorB: Vector): number {
 
         return total + componentA * componentB;
     }, 0);
+}
+
+export function crossProduct(a: Vector, b: Vector): Vector {
+    if (a.length !== 3 || b.length !== 3) {
+        throw new Error(`Expected a pair of 3-dimensional vectors, but got a vector with ${a.length} dimensions and another with ${b.length}.`);
+    }
+
+    return [
+        a[1] * b[2] - a[2] * b[1],
+        a[2] * b[0] - a[0] * b[2],
+        a[0] * b[1] - a[1] * b[0],
+    ];
+}
+
+export function magnitude(vector: Vector): number {
+    return Math.sqrt(vector.reduce((result, currentComponent) => {
+        return result + Math.pow(currentComponent, 2);
+    }, 0));
 }
