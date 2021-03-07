@@ -1,7 +1,7 @@
-import { equals, multiplyByScalar, add, dotProduct, crossProduct, magnitude } from '../src/index';
+import { equals, multiplyByScalar, add, multiplyByComponents, dotProduct, crossProduct, magnitude } from '../src/index';
 
 describe('add', () => {
-    test('returns a vector with the add components', () => {
+    test('returns a vector with the sum components', () => {
         expect(add([1, 5, 3])).toEqual([1, 5, 3]);
         expect(add([2, -1, 5], [1, 1, -1])).toEqual([3, 0, 4]);
         expect(add([2, -1, 5], [0, 3, 7], [1, 1, -1])).toEqual([3, 3, 11]);
@@ -44,6 +44,23 @@ describe('add', () => {
         const zeroVector = [0, 0, 0];
 
         expect(add(v, inverseV)).toEqual(zeroVector);
+    });
+});
+
+describe('multiplyByComponents', () => {
+    test('returns a vector with multiplied components', () => {
+        expect(multiplyByComponents([1, 5, 3])).toEqual([1, 5, 3]);
+        expect(multiplyByComponents([2, -1, 5], [1, 1, -1])).toEqual([2, -1, -5]);
+        expect(multiplyByComponents([2, -1, 5], [0, 3, 7], [1, 1, -1])).toEqual([0, -3, -35]);
+    });
+
+    test('throws an error when no vectors are given', () => {
+        expect(() => { multiplyByComponents() }).toThrow();
+    });
+
+    test('throws an error when trying to multiply vectors of different sizes', () => {
+        expect(() => { multiplyByComponents([1], [0, 3]) }).toThrow();
+        expect(() => { multiplyByComponents([1, 3], [0]) }).toThrow();
     });
 });
 
@@ -181,7 +198,7 @@ describe('magnitude', () => {
     test('gives expected magnitude for vectors of arbitrary dimensions', () => {
         expect(magnitude([1, 3])).toBe(Math.sqrt(Math.pow(1, 2) + Math.pow(3, 2)));
         expect(magnitude([3])).toBe(3);
-        expect(magnitude([-23, 199, 0, 99913])).toBe(Math.sqrt(Math.pow(-23, 2) + Math.pow(199, 2) + Math.pow(99913, 2));
+        expect(magnitude([-23, 199, 0, 99913])).toBe(Math.sqrt(Math.pow(-23, 2) + Math.pow(199, 2) + Math.pow(99913, 2)));
     });
 
     test('gives 0 for a 0-dimensional vector', () => {
