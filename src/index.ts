@@ -44,6 +44,26 @@ export function add(...vectors: Array<Vector>): Vector {
     });
 }
 
+export function subtract(...vectors: Array<Vector>): Vector {
+    if (vectors.length === 0) {
+        throw new Error('Can\'t subtract 0 vectors from each other.');
+    }
+
+    return vectors.reduce((totalVector, currentVector) => {
+        if (!totalVector) {
+            return currentVector;
+        }
+
+        if (currentVector.length !== totalVector.length) {
+            throw new Error(`Can't subtract vectors with differing lengths. Expected a length of ${totalVector.length}, but got a length of ${currentVector.length}.`);
+        }
+
+        return totalVector.map((component, index) => {
+            return component - currentVector[index];
+        });
+    });
+}
+
 export function multiplyByComponents(...vectors: Array<Vector>): Vector {
     if (vectors.length === 0) {
         throw new Error('Can\'t multiply 0 vectors.');

@@ -1,4 +1,4 @@
-import { equals, multiplyByScalar, add, multiplyByComponents, dotProduct, crossProduct, magnitude } from '../src/index';
+import { equals, multiplyByScalar, add, subtract, multiplyByComponents, dotProduct, crossProduct, magnitude } from '../src/index';
 
 describe('add', () => {
     test('returns a vector with the sum components', () => {
@@ -44,6 +44,37 @@ describe('add', () => {
         const zeroVector = [0, 0, 0];
 
         expect(add(v, inverseV)).toEqual(zeroVector);
+    });
+});
+
+describe('subtract', () => {
+    test('return a vector that results from subtracting all vectors from each other', () => {
+        expect(subtract([3, -15, 12])).toEqual([3, -15, 12]);
+        expect(subtract([2, -1, 5], [1, 1, -1])).toEqual([1, -2, 6]);
+        expect(subtract([2, -1, 5], [0, 3, 7], [1, 1, -1])).toEqual([1, -5, -1]);
+    });
+
+    test('throws an error when no vectors are given', () => {
+        expect(() => { subtract() }).toThrow();
+    });
+
+    test('throws an error when trying to subtract vectors of different sizes', () => {
+        expect(() => { subtract([1], [0, 3]) }).toThrow();
+        expect(() => { subtract([1, 3], [0]) }).toThrow();
+    });
+
+    test('has no commutativity: u - v != v - u', () => {
+        const u = [138, 923];
+        const v = [-883, 3];
+
+        expect(subtract(u, v)).not.toEqual(subtract(v, u));
+    });
+
+    test('subtraction of itself results in a zero vector: v - v = 0-vector', () => {
+        const v = [3, 12, -2];
+        const zeroVector = [0, 0, 0];
+
+        expect(subtract(v, v)).toEqual(zeroVector);
     });
 });
 
