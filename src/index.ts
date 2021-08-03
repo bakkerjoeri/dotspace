@@ -123,3 +123,13 @@ export function magnitude(vector: Vector): number {
         return result + Math.pow(currentComponent, 2);
     }, 0));
 }
+
+export function normalize(vector: Vector): Vector {
+    const m = magnitude(vector);
+
+    if (m === 0) {
+        return multiplyByScalar(0, vector);
+    }
+
+    return multiplyByScalar(1/m, vector);
+}

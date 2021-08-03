@@ -34,5 +34,6 @@ This package exports:
 * dotProduct
 * crossProduct
 * magnitude
+* normalize
 
 There are no default exports.
