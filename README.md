@@ -27,7 +27,7 @@ This package exports:
 
 * equals
 * add
-* subract
+* subtract
 * dotProduct
 * crossProduct
 * magnitude
