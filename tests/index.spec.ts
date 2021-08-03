@@ -262,4 +262,8 @@ describe('magnitude', () => {
     test('gives 0 for a 0-dimensional vector', () => {
         expect(magnitude([])).toBe(0);
     });
+
+    test('gives 0 for a zero vector', () => {
+        expect(magnitude([0, 0, 0])).toBe(0);
+    });
 });
