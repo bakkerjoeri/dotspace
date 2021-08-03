@@ -90,6 +90,10 @@ export function multiplyByScalar(scalar: number, vector: Vector): Vector {
     });
 }
 
+export function invert(vector: Vector): Vector {
+    return multiplyByScalar(-1, vector);
+}
+
 export function dotProduct(vectorA: Vector, vectorB: Vector): number {
     if (vectorA.length !== vectorB.length) {
         throw new Error(`Can't get the dot product of vectors with differing lengths. Expected a length of ${vectorA.length}, but got a length of ${vectorB.length}.`);

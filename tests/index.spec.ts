@@ -1,4 +1,4 @@
-import { equals, multiplyByScalar, add, subtract, multiplyByComponents, dotProduct, crossProduct, magnitude } from '../src/index';
+import { equals, multiplyByScalar, add, subtract, multiplyByComponents, dotProduct, crossProduct, magnitude, invert } from '../src/index';
 
 describe('add', () => {
     test('returns a vector with the sum components', () => {
@@ -137,6 +137,19 @@ describe('multiplyByScalar', () => {
     test('multiplying by −1 gives the additive inverse: (−1)v = −v', () => {
         const v = [-12, 4];
         expect(multiplyByScalar(-1, v)).toEqual([12, -4]);
+    });
+});
+
+describe('inverse', () => {
+    test('returns an inverted vector', () => {
+        expect(invert([0])).toEqual([-0]);
+        expect(invert([31])).toEqual([-31]);
+        expect(invert([2, -8])).toEqual([-2, 8]);
+        expect(invert([-1, 17, 381])).toEqual([1, -17, -381]);
+    });
+
+    test('does not crash when given an empty vector', () => {
+        expect(() => { invert([]); }).not.toThrow();
     });
 });
 
