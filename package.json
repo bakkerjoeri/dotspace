@@ -1,9 +1,13 @@
 {
 	"name": "dotspace",
 	"version": "1.2.0",
-	"author": "Joeri Bakker",
+	"author": "Joeri Bakker <bakkerjoeri@gmail.com>",
 	"license": "MIT",
 	"main": "dist/index.js",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/bakkerjoeri/dotspace.git"
+	},
 	"types": "dist/index.d.ts",
 	"scripts": {
 		"build": "rm -rf dist && tsc",
