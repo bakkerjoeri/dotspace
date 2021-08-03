@@ -1,7 +1,7 @@
 import { equals, multiplyByScalar, add, subtract, multiplyByComponents, dotProduct, crossProduct, magnitude, invert } from '../src/index';
 
 describe('add', () => {
-    test('returns a vector with the sum components', () => {
+    test('returns the sum vector', () => {
         expect(add([1, 5, 3])).toEqual([1, 5, 3]);
         expect(add([2, -1, 5], [1, 1, -1])).toEqual([3, 0, 4]);
         expect(add([2, -1, 5], [0, 3, 7], [1, 1, -1])).toEqual([3, 3, 11]);
