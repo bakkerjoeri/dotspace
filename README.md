@@ -28,12 +28,12 @@ This package exports:
 * equals
 * add
 * subract
-* multiplyByComponents
-* multiplyByScalar
-* invert
 * dotProduct
 * crossProduct
 * magnitude
 * normalize
+* multiplyByComponents
+* multiplyByScalar
+* invert
 
 There are no default exports.
