@@ -31,6 +31,22 @@ export function add(...vectors) {
         });
     });
 }
+export function subtract(...vectors) {
+    if (vectors.length === 0) {
+        throw new Error('Can\'t subtract 0 vectors from each other.');
+    }
+    return vectors.reduce((totalVector, currentVector) => {
+        if (!totalVector) {
+            return currentVector;
+        }
+        if (currentVector.length !== totalVector.length) {
+            throw new Error(`Can't subtract vectors with differing lengths. Expected a length of ${totalVector.length}, but got a length of ${currentVector.length}.`);
+        }
+        return totalVector.map((component, index) => {
+            return component - currentVector[index];
+        });
+    });
+}
 export function multiplyByComponents(...vectors) {
     if (vectors.length === 0) {
         throw new Error('Can\'t multiply 0 vectors.');
@@ -51,6 +67,9 @@ export function multiplyByScalar(scalar, vector) {
     return vector.map(component => {
         return component * scalar;
     });
+}
+export function invert(vector) {
+    return multiplyByScalar(-1, vector);
 }
 export function dotProduct(vectorA, vectorB) {
     if (vectorA.length !== vectorB.length) {
@@ -75,4 +94,11 @@ export function magnitude(vector) {
     return Math.sqrt(vector.reduce((result, currentComponent) => {
         return result + Math.pow(currentComponent, 2);
     }, 0));
+}
+export function normalize(vector) {
+    const m = magnitude(vector);
+    if (m === 0) {
+        return multiplyByScalar(0, vector);
+    }
+    return multiplyByScalar(1 / m, vector);
 }
