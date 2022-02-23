@@ -1,4 +1,4 @@
-import { equals, multiplyByScalar, add, subtract, multiplyByComponents, dotProduct, crossProduct, magnitude, invert, normalize } from '../src/index';
+import { equals, multiplyByScalar, add, subtract, multiplyByComponents, dotProduct, crossProduct, magnitude, invert, resize, normalize } from '../src/index';
 
 describe('add', () => {
     test('returns the sum vector', () => {
@@ -150,6 +150,24 @@ describe('inverse', () => {
 
     test('does not crash when given an empty vector', () => {
         expect(() => { invert([]); }).not.toThrow();
+    });
+});
+
+describe('resize', () => {
+    test('returns a vector with the given magnitude', () => {
+        expect(magnitude(resize([917], 100))).toBeCloseTo(100);
+        expect(magnitude(resize([12, -3], 10))).toBeCloseTo(10);
+        expect(magnitude(resize([87, 13, -98], 3))).toBeCloseTo(3);
+    });
+
+    test('throws an error for a negative magnitude', () => {
+        expect(() => { magnitude(resize([12, -3], -10))}).toThrow();
+    });
+
+    test('returns a zero vector when given a zero vector of equal length', () => {
+        expect(resize([0], 100)).toEqual([0]);
+        expect(resize([0, 0], 100)).toEqual([0, 0]);
+        expect(resize([0, 0, 0], 100)).toEqual([0, 0, 0]);
     });
 });
 

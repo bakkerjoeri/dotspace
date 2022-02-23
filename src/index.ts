@@ -124,12 +124,20 @@ export function magnitude(vector: Vector): number {
     }, 0));
 }
 
-export function normalize(vector: Vector): Vector {
+export function resize(vector: Vector, toMagnitude: number): Vector {
+    if (toMagnitude < 0) {
+        throw new Error('Cannot resize a vector to negative magnitude. A vector\'s magnitude is always positive.');
+    }
+
     const m = magnitude(vector);
 
     if (m === 0) {
         return multiplyByScalar(0, vector);
     }
 
-    return multiplyByScalar(1/m, vector);
+    return multiplyByScalar(toMagnitude/m, vector);
+}
+
+export function normalize(vector: Vector): Vector {
+    return resize(vector, 1);
 }
