@@ -31,6 +31,7 @@ This package exports:
 * dotProduct
 * crossProduct
 * magnitude
+* resize
 * normalize
 * multiplyByComponents
 * multiplyByScalar
