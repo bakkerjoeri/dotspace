@@ -10,4 +10,5 @@ export declare function invert(vector: Vector): Vector;
 export declare function dotProduct(vectorA: Vector, vectorB: Vector): number;
 export declare function crossProduct(a: Vector, b: Vector): Vector;
 export declare function magnitude(vector: Vector): number;
+export declare function resize(vector: Vector, toMagnitude: number): Vector;
 export declare function normalize(vector: Vector): Vector;
