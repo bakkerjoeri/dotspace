@@ -2,12 +2,9 @@
 	"compilerOptions": {
 		"strict": true,
 		"target": "ES6",
-		"module": "node16",
-		"moduleResolution": "node16",
+		"module": "nodenext",
+		"moduleResolution": "nodenext",
 		"esModuleInterop": true,
-		"lib": [
-			"es7"
-		],
 		"outDir": "dist",
 		"declaration": true
 	},
