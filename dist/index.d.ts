@@ -1,6 +1,6 @@
-export declare type Vector = number[];
-export declare type Vector2D = [number, number];
-export declare type Vector3D = [number, number, number];
+export type Vector = number[];
+export type Vector2D = [number, number];
+export type Vector3D = [number, number, number];
 export declare function equals(...vectors: Array<Vector>): boolean;
 export declare function add(...vectors: Array<Vector>): Vector;
 export declare function subtract(...vectors: Array<Vector>): Vector;
